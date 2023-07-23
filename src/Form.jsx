@@ -1,11 +1,18 @@
 import { useState } from 'react';
 
-const Form = () => {
+// eslint-disable-next-line react/prop-types
+const Form = ({ addItem }) => {
   const [newItemName, setNewItemName] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(newItemName);
+    if (!newItemName) {
+      console.log('please provide value');
+      return;
+    }
+
+    addItem(newItemName);
+    setNewItemName('');
   };
   return (
     <form onSubmit={handleSubmit}>
