@@ -3,6 +3,8 @@ import './App.css';
 import Form from './Form';
 import { nanoid } from 'nanoid';
 import Items from './components/Items';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // eslint-disable-next-line no-unused-vars
 // const getLocalStorage = () => {
@@ -27,13 +29,13 @@ function App() {
     };
 
     setItems([...items, newItem]);
-    console.log('item added to the list');
+    toast.success('item added to the list');
   };
 
   const removeItem = (itemId) => {
     const newItems = items.filter((item) => item.id !== itemId);
     setItems(newItems);
-    console.log('item removed');
+    toast.success('item removed');
   };
 
   const editItem = (itemId) => {
@@ -45,7 +47,7 @@ function App() {
       return item;
     });
     setItems(newItems);
-    console.log('item removed');
+    toast.success('item removed');
   };
 
   useEffect(() => {
@@ -54,6 +56,7 @@ function App() {
 
   return (
     <section className="section-center">
+      <ToastContainer position="top-center" />
       <Form addItem={addItem} />
       <Items items={items} removeItem={removeItem} editItem={editItem} />
     </section>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 // eslint-disable-next-line react/prop-types
 const Form = ({ addItem }) => {
@@ -7,7 +8,7 @@ const Form = ({ addItem }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!newItemName) {
-      console.log('please provide value');
+      toast.error('please provide value');
       return;
     }
 
