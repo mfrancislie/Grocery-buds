@@ -36,6 +36,18 @@ function App() {
     console.log('item removed');
   };
 
+  const editItem = (itemId) => {
+    const newItems = items.map((item) => {
+      if (item.id == itemId) {
+        const newItem = { ...item, completed: !item.completed };
+        return newItem;
+      }
+      return item;
+    });
+    setItems(newItems);
+    console.log('item removed');
+  };
+
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify(items));
   }, [items]);
@@ -43,7 +55,7 @@ function App() {
   return (
     <section className="section-center">
       <Form addItem={addItem} />
-      <Items items={items} removeItem={removeItem} />
+      <Items items={items} removeItem={removeItem} editItem={editItem} />
     </section>
   );
 }
